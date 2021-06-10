@@ -1,6 +1,7 @@
 package kw.kimkihong.retrofit;
 
 import android.annotation.SuppressLint;
+import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -10,16 +11,24 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import java.util.HashMap;
 import java.util.Map;
 
-public class Request {
-    private final SharedPreferences preferences;
+public class Request extends Application {
+    private static Request singleton;
+    private SharedPreferences preferences;
     private String token;
 
-    public Request(Context context) {
-        this.preferences = context.getSharedPreferences("user_data", Context.MODE_PRIVATE);
-        this.token = this.preferences.getString("user_token", "");
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        singleton = this;
+        this.preferences = getApplicationContext().getSharedPreferences("user_data", Context.MODE_PRIVATE);
+        this.token = this.preferences.getString("token", "");
+    }
+
+    public static Request getInstance() {
+        return singleton;
     }
 
     private void send_request(Call<Map<String, Object>> call, final RequestCallback callback) {
@@ -29,6 +38,7 @@ public class Request {
                 if(!response.isSuccessful()){
                     Log.e("API Connection Failed  ", "error code : " + response.code());
                     callback.onError();
+                    return;
                 }
                 callback.onSuccess(response.body());
                 Log.d("API Connection Success  ", response.body().toString());
@@ -75,8 +85,44 @@ public class Request {
             @Override
             public void onSuccess(Map<String, Object> retData) {
                 @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor= preferences.edit();
-                editor.putString("user_token", (String) retData.get("user_token"));
+                editor.putString("token", (String) retData.get("token"));
+                editor.putString("id", id);
+                editor.putString("password", password);
                 editor.apply();
+                callback.onSuccess(retData);
+            }
+
+            @Override
+            public void onError() {
+                callback.onError();
+            }
+        });
+    }
+
+    public void checkID(String id, final RequestCallback callback) {
+        if (id.equals("")) {
+            callback.onError();
+            return;
+        }
+        Call<Map<String, Object>> call = RetrofitClient.getApiService().checkID(id);
+        this.send_request(call, new RequestCallback() {
+            @Override
+            public void onSuccess(Map<String, Object> retData) {
+                callback.onSuccess(retData);
+            }
+
+            @Override
+            public void onError() {
+                callback.onError();
+            }
+        });
+    }
+
+    public void enroll(Map<String, Object> form, final RequestCallback callback) {
+        Call<Map<String, Object>> call = RetrofitClient.getApiService().enroll(form);
+        this.send_request(call, new RequestCallback() {
+            @Override
+            public void onSuccess(Map<String, Object> retData) {
                 callback.onSuccess(retData);
             }
 

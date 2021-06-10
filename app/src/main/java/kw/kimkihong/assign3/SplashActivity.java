@@ -17,20 +17,19 @@ import java.util.List;
 import java.util.Map;
 
 public class SplashActivity extends AppCompatActivity {
-    Request request;
+    private Intent intent_login;
+    private Intent intent_main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        Intent intent_login = new Intent(this, LoginActivity.class);
-        Intent intent_main = new Intent(this, MainActivity.class);
+        this.intent_login = new Intent(this, LoginActivity.class);
+        this.intent_main = new Intent(this, MainActivity.class);
 
         long start = System.currentTimeMillis();
-        this.request = new Request(this);
-
-        this.request.check(new RequestCallback() {
+        Request.getInstance().check(new RequestCallback() {
             @Override
             public void onSuccess(Map<String, Object> retData) {
                 long pause = (System.currentTimeMillis() - start) >= 1000 ? 0 : 1000 - (System.currentTimeMillis() - start);
