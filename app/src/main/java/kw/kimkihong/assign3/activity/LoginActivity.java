@@ -1,13 +1,13 @@
-package kw.kimkihong.assign3;
+package kw.kimkihong.assign3.activity;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import kw.kimkihong.assign3.R;
 import kw.kimkihong.retrofit.Request;
 import kw.kimkihong.retrofit.RequestCallback;
 

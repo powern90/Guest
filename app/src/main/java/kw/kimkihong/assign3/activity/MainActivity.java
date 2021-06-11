@@ -1,18 +1,20 @@
-package kw.kimkihong.assign3;
+package kw.kimkihong.assign3.activity;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.datepicker.MaterialTextInputPicker;
+import kw.kimkihong.assign3.*;
+import kw.kimkihong.assign3.fragment.ListFragment;
+import kw.kimkihong.assign3.fragment.MyFragment;
+import kw.kimkihong.assign3.fragment.ResolveFragment;
+import kw.kimkihong.retrofit.Request;
+import kw.kimkihong.retrofit.RequestCallback;
+
+import java.util.Calendar;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private BackPressCloseHandler backKeyClickHandler;
@@ -69,6 +71,5 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     }
-
 
 }

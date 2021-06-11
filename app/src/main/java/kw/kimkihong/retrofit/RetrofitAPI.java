@@ -1,8 +1,10 @@
 package kw.kimkihong.retrofit;
 
+import kw.kimkihong.vo.PostVO;
 import retrofit2.Call;
 import retrofit2.http.*;
 
+import java.util.List;
 import java.util.Map;
 
 public interface RetrofitAPI {
@@ -23,4 +25,7 @@ public interface RetrofitAPI {
 
     @POST("auth/enroll")
     Call<Map<String, Object>> enroll(@Body Map<String, Object> form);
+
+    @GET("post/list")
+    Call<List<PostVO>> getPostList(@Query("date") String date);
 }

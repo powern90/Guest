@@ -1,19 +1,14 @@
-package kw.kimkihong.assign3;
+package kw.kimkihong.assign3.activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
-import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import kw.kimkihong.assign3.R;
 import kw.kimkihong.retrofit.Request;
 import kw.kimkihong.retrofit.RequestCallback;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class SplashActivity extends AppCompatActivity {

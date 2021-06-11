@@ -1,4 +1,4 @@
-package kw.kimkihong.assign3;
+package kw.kimkihong.assign3.activity;
 
 import android.content.Intent;
 import android.util.Log;
@@ -11,6 +11,7 @@ import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.google.android.material.textfield.TextInputLayout;
+import kw.kimkihong.assign3.R;
 import kw.kimkihong.retrofit.Request;
 import kw.kimkihong.retrofit.RequestCallback;
 

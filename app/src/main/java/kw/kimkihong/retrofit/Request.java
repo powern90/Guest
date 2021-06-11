@@ -7,11 +7,18 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import kw.kimkihong.vo.PostVO;
+import org.jetbrains.annotations.NotNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Locale;
 
 public class Request extends Application {
     private static Request singleton;
@@ -128,6 +135,30 @@ public class Request extends Application {
 
             @Override
             public void onError() {
+                callback.onError();
+            }
+        });
+    }
+
+    public void getPostList(Calendar date, final PostCallback callback) {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+        Call<List<PostVO>> call = RetrofitClient.getApiService().getPostList(df.format(date.getTime()));
+        call.enqueue(new Callback<List<PostVO>>() {
+            @Override
+            public void onResponse(@NotNull Call<List<PostVO>> call, @NotNull Response<List<PostVO>> response) {
+                if(!response.isSuccessful()){
+                    Log.e("API Connection Failed  ", "error code : " + response.code());
+                    callback.onError();
+                    return;
+                }
+                callback.onSuccess(response.body());
+                assert response.body() != null;
+                Log.d("API Connection Success  ", response.body().toString());
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<List<PostVO>> call, @NotNull Throwable t) {
+                Log.e("API ERROR ", t.getMessage());
                 callback.onError();
             }
         });

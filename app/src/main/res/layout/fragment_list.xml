@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".ListFragment">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context=".fragment.ListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listCalenderView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="list"/>
+            android:layout_height="wrap_content"/>
 
-</FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listPostView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <!--    <TextView-->
+    <!--            android:id="@+id/listDate"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginStart="16dp"-->
+    <!--            android:layout_marginTop="16dp"-->
+    <!--            android:fontFamily="sans-serif-medium"-->
+    <!--            android:text="SELECT A DATE"-->
+    <!--            android:textColor="@color/grey"-->
+    <!--            android:textSize="24sp"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--    <TextView-->
+    <!--            android:id="@+id/listDay"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginTop="2dp"-->
+    <!--            android:fontFamily="sans-serif-medium"-->
+    <!--            android:textColor="@color/lightGrey"-->
+    <!--            android:textSize="20sp"-->
+    <!--            app:layout_constraintBottom_toBottomOf="@+id/tvDate"-->
+    <!--            app:layout_constraintStart_toEndOf="@+id/tvDate"-->
+    <!--            app:layout_constraintTop_toTopOf="@+id/tvDate" />-->
+
+
+</LinearLayout>

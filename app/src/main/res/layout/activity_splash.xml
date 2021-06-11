@@ -6,7 +6,7 @@
               android:layout_height="match_parent"
               android:padding="16dp"
 
-              tools:context="kw.kimkihong.assign3.SplashActivity">
+              tools:context="kw.kimkihong.assign3.activity.SplashActivity">
 
     <LinearLayout
             android:layout_width="wrap_content"
