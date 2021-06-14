@@ -8,12 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import kw.kimkihong.adapter.DateRecyclerAdapter;
-import kw.kimkihong.adapter.PostRecyclerAdapter;
-import kw.kimkihong.adapter.ReservationRecyclerAdapter;
+import kw.kimkihong.assign3.adapter.DateRecyclerAdapter;
+import kw.kimkihong.assign3.adapter.ReservationRecyclerAdapter;
 import kw.kimkihong.assign3.R;
-import kw.kimkihong.vo.PostVO;
-import kw.kimkihong.vo.ReservationVO;
+import kw.kimkihong.assign3.vo.ReservationVO;
 
 import java.util.Calendar;
 

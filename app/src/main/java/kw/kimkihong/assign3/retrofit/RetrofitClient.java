@@ -1,4 +1,4 @@
-package kw.kimkihong.retrofit;
+package kw.kimkihong.assign3.retrofit;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import retrofit2.Retrofit;

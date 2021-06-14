@@ -1,6 +1,6 @@
-package kw.kimkihong.retrofit;
+package kw.kimkihong.assign3.retrofit;
 
-import kw.kimkihong.vo.PostVO;
+import kw.kimkihong.assign3.vo.PostVO;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -29,10 +29,13 @@ public interface RetrofitAPI {
     @POST("auth/enroll")
     Call<Map<String, Object>> enroll(@Body Map<String, Object> form);
 
+    @POST("post/add")
+    Call<Map<String, Object>> addPost(@Header("x-access-token") String token, @Body PostVO form);
+
     @GET("post/list")
     Call<List<PostVO>> getPostList(@Query("date") String date);
 
     @Multipart
     @POST("post/upload")
-    Call<ResponseBody> upload(@Part MultipartBody.Part image);
+    Call<ResponseBody> upload(@Part MultipartBody.Part image, @Part("upload") RequestBody name);
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,15 +10,9 @@
     <FrameLayout
             android:id="@+id/frame_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-<!--        <Button-->
-<!--                android:layout_width="67dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:id="@+id/tmp"-->
-<!--                android:text="clr"-->
-<!--                />-->
-    </FrameLayout>
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_above="@+id/mainBottomNavigation"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/mainBottomNavigation"
@@ -27,6 +21,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/user_bottom_navigation_menu"
+            android:layout_alignParentBottom="true"
             app:itemBackground="@android:color/white"
             />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

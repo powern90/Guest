@@ -7,7 +7,7 @@
             android:title="예약"/>
 
     <item
-            android:id="@+id/page_register"
+            android:id="@+id/page_add"
             android:enabled="true"
             android:title="등록"/>
 

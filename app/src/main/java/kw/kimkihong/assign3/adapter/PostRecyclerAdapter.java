@@ -1,20 +1,17 @@
-package kw.kimkihong.adapter;
+package kw.kimkihong.assign3.adapter;
 
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
 import kw.kimkihong.assign3.R;
-import kw.kimkihong.retrofit.PostCallback;
-import kw.kimkihong.retrofit.Request;
-import kw.kimkihong.retrofit.RequestCallback;
-import kw.kimkihong.vo.PostVO;
+import kw.kimkihong.assign3.retrofit.PostCallback;
+import kw.kimkihong.assign3.retrofit.Request;
+import kw.kimkihong.assign3.vo.PostVO;
 
 import java.util.*;
 
@@ -84,6 +81,9 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<PostRecyclerAdapte
         void onBind(PostVO item){
             postTitle.setText(item.getName());
             postPrice.setText(item.getPrice());
+            Glide.with(itemView).load("http://10.0.2.2/public/images/" + item.getImg())
+                    .error(R.drawable.no_image)
+                    .into(postImage);
         }
     }
 }

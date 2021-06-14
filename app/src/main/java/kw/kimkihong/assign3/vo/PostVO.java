@@ -1,5 +1,8 @@
-package kw.kimkihong.vo;
+package kw.kimkihong.assign3.vo;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class PostVO {
@@ -9,14 +12,30 @@ public class PostVO {
     private String price;
     private String content;
     private Integer count;
-    private Date startDate;
-    private Date endDate;
-    private Date enterTime;
-    private Date exitTime;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private LocalTime enterTime;
+    private LocalTime exitTime;
     private String address;
     private String altitude;
     private String longitude;
     private String img;
+
+    public LocalTime getEnterTime() {
+        return enterTime;
+    }
+
+    public void setEnterTime(LocalTime enterTime) {
+        this.enterTime = enterTime;
+    }
+
+    public LocalTime getExitTime() {
+        return exitTime;
+    }
+
+    public void setExitTime(LocalTime exitTime) {
+        this.exitTime = exitTime;
+    }
 
     public Integer getId() {
         return id;
@@ -66,36 +85,20 @@ public class PostVO {
         this.count = count;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
-    }
-
-    public Date getEnterTime() {
-        return enterTime;
-    }
-
-    public void setEnterTime(Date enterTime) {
-        this.enterTime = enterTime;
-    }
-
-    public Date getExitTime() {
-        return exitTime;
-    }
-
-    public void setExitTime(Date exitTime) {
-        this.exitTime = exitTime;
     }
 
     public String getAddress() {

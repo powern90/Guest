@@ -1,4 +1,4 @@
-package kw.kimkihong.adapter;
+package kw.kimkihong.assign3.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import kw.kimkihong.assign3.R;
-import kw.kimkihong.vo.DateVO;
+import kw.kimkihong.assign3.vo.DateVO;
 
 import java.util.ArrayList;
 import java.util.Calendar;

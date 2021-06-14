@@ -1,6 +1,6 @@
-package kw.kimkihong.retrofit;
+package kw.kimkihong.assign3.retrofit;
 
-import kw.kimkihong.vo.PostVO;
+import kw.kimkihong.assign3.vo.PostVO;
 
 import java.util.List;
 

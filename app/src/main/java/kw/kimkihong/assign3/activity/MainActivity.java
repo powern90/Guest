@@ -1,21 +1,18 @@
 package kw.kimkihong.assign3.activity;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import kw.kimkihong.assign3.*;
 import kw.kimkihong.assign3.fragment.*;
-import kw.kimkihong.retrofit.Request;
-import kw.kimkihong.retrofit.RequestCallback;
-
-import java.util.Calendar;
-import java.util.Map;
+import kw.kimkihong.assign3.util.BackPressCloseHandler;
 
 public class MainActivity extends AppCompatActivity {
     private BackPressCloseHandler backKeyClickHandler;
@@ -29,6 +26,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences("user_data", Context.MODE_PRIVATE);
+        String token = preferences.getString("token", "");
+        Log.d("Token", token);
+
+
         backKeyClickHandler = new BackPressCloseHandler(this);
 
         this.sharedPreferences = getApplicationContext().getSharedPreferences("user_data", Context.MODE_PRIVATE);
@@ -54,18 +57,6 @@ public class MainActivity extends AppCompatActivity {
         backKeyClickHandler.onBackPressed();
     }
 
-//    class tmpOnClickListener implements View.OnClickListener {
-//        @Override
-//        public void onClick(View view) {
-//            SharedPreferences preferences = getApplication().getSharedPreferences("user_data", Context.MODE_PRIVATE);
-//            @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor= preferences.edit();
-//            editor.putString("token", "");
-//            editor.putString("id", "");
-//            editor.putString("password", "");
-//            editor.apply();
-//            Toast.makeText(getApplicationContext(), "Clear", Toast.LENGTH_SHORT).show();
-//        }
-//    }
 
     class onNavigationItemSelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener {
         @Override
@@ -79,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
             else if(item.getItemId() == R.id.page_reservation) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,new ReservationFragment()).commit();
             }
-            else if(item.getItemId() == R.id.page_register) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,new RegisterFragment()).commit();
+            else if(item.getItemId() == R.id.page_add) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,new AddFragment()).commit();
             }
             else {
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,new MyFragment()).commit();

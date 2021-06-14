@@ -6,8 +6,8 @@ import android.os.Handler;
 import android.os.Looper;
 import androidx.appcompat.app.AppCompatActivity;
 import kw.kimkihong.assign3.R;
-import kw.kimkihong.retrofit.Request;
-import kw.kimkihong.retrofit.RequestCallback;
+import kw.kimkihong.assign3.retrofit.Request;
+import kw.kimkihong.assign3.retrofit.RequestCallback;
 
 import java.util.Map;
 

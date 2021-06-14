@@ -1,4 +1,4 @@
-package kw.kimkihong.vo;
+package kw.kimkihong.assign3.vo;
 
 import java.util.Calendar;
 

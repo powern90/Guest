@@ -1,4 +1,4 @@
-package kw.kimkihong.adapter;
+package kw.kimkihong.assign3.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,8 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import kw.kimkihong.assign3.R;
-import kw.kimkihong.vo.PostVO;
-import kw.kimkihong.vo.ReservationVO;
+import kw.kimkihong.assign3.vo.ReservationVO;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

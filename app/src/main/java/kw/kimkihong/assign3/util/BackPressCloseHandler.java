@@ -1,4 +1,4 @@
-package kw.kimkihong.assign3;
+package kw.kimkihong.assign3.util;
 
 import android.app.Activity;
 import android.widget.Toast;

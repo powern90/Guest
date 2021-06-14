@@ -1,4 +1,4 @@
-package kw.kimkihong.retrofit;
+package kw.kimkihong.assign3.retrofit;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
@@ -7,8 +7,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import kw.kimkihong.vo.PostVO;
-import okhttp3.MediaType;
+import kw.kimkihong.assign3.vo.PostVO;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -17,7 +16,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -185,8 +183,8 @@ public class Request extends Application {
         });
     }
 
-    public void uploadImg(MultipartBody.Part partImage, RequestCallback callback) {
-        Call<ResponseBody> call = RetrofitClient.getApiService().upload(partImage);
+    public void uploadImg(MultipartBody.Part partImage, RequestBody name, RequestCallback callback) {
+        Call<ResponseBody> call = RetrofitClient.getApiService().upload(partImage, name);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(@NotNull Call<ResponseBody> call, @NotNull Response<ResponseBody> response) {
@@ -199,6 +197,21 @@ public class Request extends Application {
 
             @Override
             public void onFailure(@NotNull Call<ResponseBody> call, @NotNull Throwable t) {
+                callback.onError();
+            }
+        });
+    }
+
+    public void addPost(PostVO form, final RequestCallback callback) {
+        Call<Map<String, Object>> call = RetrofitClient.getApiService().addPost(this.token, form);
+        this.send_request(call, new RequestCallback() {
+            @Override
+            public void onSuccess(Map<String, Object> retData) {
+                callback.onSuccess(retData);
+            }
+
+            @Override
+            public void onError() {
                 callback.onError();
             }
         });
