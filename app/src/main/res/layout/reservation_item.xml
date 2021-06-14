@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/reservationItem"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:padding="20dp"
+                android:background="@drawable/post_item_box">
+
+    <TextView
+            android:id="@+id/reservationId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif"
+            android:text="1234555"/>
+
+    <TextView
+            android:id="@+id/reservationStartDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif"
+            android:text="2021-06-11"/>
+
+    <TextView
+            android:id="@+id/reservationDateSlicer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/reservationStartDate"
+            android:layout_toEndOf="@+id/reservationStartDate"
+            android:layout_marginStart="6sp"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif"
+            android:text="~"/>
+
+    <TextView
+            android:id="@+id/reservationEndDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/reservationDateSlicer"
+            android:layout_toEndOf="@+id/reservationDateSlicer"
+            android:layout_marginStart="6sp"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif"
+            android:text="2021-06-11"/>
+
+    <TextView
+            android:id="@+id/reservationText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif"
+            android:text="예약자:"/>
+
+    <TextView
+            android:id="@+id/reservationName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/reservationText1"
+            android:layout_toRightOf="@+id/reservationText1"
+            android:layout_marginStart="5dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif"
+            android:text="김기홍"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/reservationCount"
+            android:layout_toStartOf="@+id/reservationCount"
+            android:layout_marginEnd="10dp"
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif"
+            android:text="인원 :"/>
+
+    <TextView
+            android:id="@+id/reservationCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/reservationText2"
+            android:layout_toStartOf="@+id/reservationText2"
+            android:layout_marginEnd="5dp"
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif"
+            android:text="2"/>
+
+    <TextView
+            android:id="@+id/reservationText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif"
+            android:text="명"/>
+
+</RelativeLayout>

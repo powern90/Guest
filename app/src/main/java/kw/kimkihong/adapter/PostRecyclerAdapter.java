@@ -20,9 +20,9 @@ import java.util.*;
 
 public class PostRecyclerAdapter extends RecyclerView.Adapter<PostRecyclerAdapter.ViewHolder> {
     private final ArrayList<PostVO> mPostList = new ArrayList<>();
-    private PostRecyclerAdapter.OnItemClickListener mListener;
+    private PostRecyclerAdapter.OnPostItemClickListener mListener;
 
-    public void setOnItemClickListener(PostRecyclerAdapter.OnItemClickListener listener)
+    public void setOnItemClickListener(PostRecyclerAdapter.OnPostItemClickListener listener)
     {
         this.mListener = listener;
     }
@@ -60,7 +60,7 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<PostRecyclerAdapte
         });
     }
 
-    public interface OnItemClickListener
+    public interface OnPostItemClickListener
     {
         void onItemClick(View view, PostVO post);
     }

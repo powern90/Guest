@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+            android:id="@+id/page_reservation"
+            android:enabled="true"
+            android:title="예약"/>
+
+    <item
+            android:id="@+id/page_register"
+            android:enabled="true"
+            android:title="등록"/>
+
+    <item
+            android:id="@+id/page_my"
+            android:enabled="true"
+            android:title="My메뉴"/>
+</menu>

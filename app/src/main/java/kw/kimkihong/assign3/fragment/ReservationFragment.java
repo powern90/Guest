@@ -10,43 +10,45 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import kw.kimkihong.adapter.DateRecyclerAdapter;
 import kw.kimkihong.adapter.PostRecyclerAdapter;
+import kw.kimkihong.adapter.ReservationRecyclerAdapter;
 import kw.kimkihong.assign3.R;
 import kw.kimkihong.vo.PostVO;
+import kw.kimkihong.vo.ReservationVO;
 
 import java.util.Calendar;
 
 
-public class ListFragment extends Fragment {
+public class ReservationFragment extends Fragment {
     private RecyclerView dateRecyclerView;
     private DateRecyclerAdapter dateRecyclerAdapter;
 
-    private RecyclerView postRecyclerView;
-    private PostRecyclerAdapter postRecyclerAdapter;
+    private RecyclerView reservationRecyclerView;
+    private ReservationRecyclerAdapter reservationRecyclerAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list, container, false);
-        dateRecyclerView = (RecyclerView) view.findViewById(R.id.listCalenderView);
-        postRecyclerView = (RecyclerView) view.findViewById(R.id.listPostView);
+        View view = inflater.inflate(R.layout.fragment_reservation, container, false);
+        dateRecyclerView = (RecyclerView) view.findViewById(R.id.reservationCalenderView);
+        reservationRecyclerView = (RecyclerView) view.findViewById(R.id.reservationNameView);
 
         dateRecyclerAdapter = new DateRecyclerAdapter();
-        postRecyclerAdapter = new PostRecyclerAdapter();
+        reservationRecyclerAdapter = new ReservationRecyclerAdapter();
 
         dateRecyclerView.setAdapter(dateRecyclerAdapter);
         dateRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
 
-        postRecyclerView.setAdapter(postRecyclerAdapter);
-        postRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
+        reservationRecyclerView.setAdapter(reservationRecyclerAdapter);
+        reservationRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
 
         dateRecyclerAdapter.addDate();
         dateRecyclerView.post(() -> dateRecyclerAdapter.notifyDataSetChanged());
 
-        postRecyclerAdapter.addPost(Calendar.getInstance());
+        reservationRecyclerAdapter.addReservation(Calendar.getInstance());
 
-        dateRecyclerView.addOnScrollListener(new dateOnScrollListener());
-        dateRecyclerAdapter.setOnItemClickListener(new onDateItemClickListener());
+        dateRecyclerView.addOnScrollListener(new ReservationFragment.dateOnScrollListener());
+        dateRecyclerAdapter.setOnItemClickListener(new ReservationFragment.onDateItemClickListener());
 
-        postRecyclerAdapter.setOnItemClickListener(new onPostItemClickListener());
+        reservationRecyclerAdapter.setOnItemClickListener(new onReservationItemClickListener());
 
         return view;
     }
@@ -70,13 +72,13 @@ public class ListFragment extends Fragment {
     class onDateItemClickListener implements DateRecyclerAdapter.OnItemClickListener {
         @Override
         public void onItemClick(View itemView, Calendar date) {
-            postRecyclerAdapter.addPost(date);
+            reservationRecyclerAdapter.addReservation(date);
         }
     }
 
-    class onPostItemClickListener implements PostRecyclerAdapter.OnPostItemClickListener {
+    class onReservationItemClickListener implements ReservationRecyclerAdapter.OnReservationItemClickListener {
         @Override
-        public void onItemClick(View itemView, PostVO post) {
+        public void onItemClick(View itemView, ReservationVO post) {
 
         }
     }

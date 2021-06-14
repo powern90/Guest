@@ -8,17 +8,18 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import kw.kimkihong.vo.PostVO;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import org.jetbrains.annotations.NotNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Locale;
+import java.util.*;
 
 public class Request extends Application {
     private static Request singleton;
@@ -58,12 +59,20 @@ public class Request extends Application {
         });
     }
 
+    private void setPreferences(Map<String, Object> data) {
+        @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor= preferences.edit();
+        editor.putString("name", (String) data.get("name"));
+        editor.putBoolean("isBusiness", (boolean) data.get("isBusiness"));
+        editor.apply();
+    }
+
     public void check(final RequestCallback callback) {
         if(!this.token.equals("")) {
             Call<Map<String, Object>> call = RetrofitClient.getApiService().check(this.token);
             this.send_request(call, new RequestCallback() {
                 @Override
                 public void onSuccess(Map<String, Object> retData) {
+                    setPreferences((Map<String, Object>) retData.get("info"));
                     callback.onSuccess(retData);
                 }
 
@@ -93,9 +102,21 @@ public class Request extends Application {
             public void onSuccess(Map<String, Object> retData) {
                 @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor= preferences.edit();
                 editor.putString("token", (String) retData.get("token"));
+                token = (String) retData.get("token");
                 editor.putString("id", id);
                 editor.putString("password", password);
                 editor.apply();
+                check(new RequestCallback() {
+                    @Override
+                    public void onSuccess(Map<String, Object> retData) {
+                        callback.onSuccess(retData);
+                    }
+
+                    @Override
+                    public void onError() {
+                        callback.onError();
+                    }
+                });
                 callback.onSuccess(retData);
             }
 
@@ -159,6 +180,25 @@ public class Request extends Application {
             @Override
             public void onFailure(@NotNull Call<List<PostVO>> call, @NotNull Throwable t) {
                 Log.e("API ERROR ", t.getMessage());
+                callback.onError();
+            }
+        });
+    }
+
+    public void uploadImg(MultipartBody.Part partImage, RequestCallback callback) {
+        Call<ResponseBody> call = RetrofitClient.getApiService().upload(partImage);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(@NotNull Call<ResponseBody> call, @NotNull Response<ResponseBody> response) {
+                if(response.isSuccessful()) {
+                    Map<String, Object> ret = new HashMap<>();
+                    ret.put("success", true);
+                    callback.onSuccess(ret);
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<ResponseBody> call, @NotNull Throwable t) {
                 callback.onError();
             }
         });

@@ -1,6 +1,9 @@
 package kw.kimkihong.assign3.activity;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -45,8 +48,10 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean idCheck;
     private boolean pwCheck;
-    private Integer business;
+    private boolean business;
     private Integer gender;
+
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,8 +90,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         this.idCheck = false;
         this.pwCheck = false;
-        this.business = 0;
+        this.business = false;
         this.gender = 0;
+
+        this.sharedPreferences = getApplicationContext().getSharedPreferences("user_data", Context.MODE_PRIVATE);
     }
 
     class iddOnFocusChangedListener implements View.OnFocusChangeListener {
@@ -121,12 +128,12 @@ public class RegisterActivity extends AppCompatActivity {
         public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
             if(i == R.id.registerBusinessTrue) {
                 businessNumberLayout.setVisibility(View.VISIBLE);
-                business = 1;
+                business = true;
             }
             else {
                 businessNumberInput.setText("");
                 businessNumberLayout.setVisibility(View.GONE);
-                business = 0;
+                business = false;
             }
         }
     }
@@ -180,8 +187,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
             String id = idInput.getText().toString().trim();
             String password = "";
-            Log.d("Password", passwordInput.getText().toString().trim());
-            Log.d("Password2", passwordCheckInput.getText().toString().trim());
             if(passwordInput.getText().toString().equals(passwordCheckInput.getText().toString())
                     && !passwordInput.getText().toString().trim().equals("")) {
                 password = passwordInput.getText().toString().trim();
@@ -198,7 +203,7 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
             String businessNumber = businessNumberInput.getText().toString().trim();
-            if(business == 1 && businessNumber.equals("")) {
+            if(business && businessNumber.equals("")) {
                 Toast.makeText(getApplicationContext(), "사업자등록번호를 입력해주세요", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -211,10 +216,28 @@ public class RegisterActivity extends AppCompatActivity {
             form.put("gender", gender);
             form.put("isBusiness", business);
             form.put("business", businessNumber);
+            String finalPassword = password;
             Request.getInstance().enroll(form, new RequestCallback() {
                 @Override
                 public void onSuccess(Map<String, Object> retData) {
-                    startActivity(intent_main);
+                    @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor= sharedPreferences.edit();
+                    editor.putString("name", name);
+                    editor.putString("id", id);
+                    editor.putString("password", finalPassword);
+                    editor.putBoolean("isBusiness", business);
+                    editor.apply();
+                    Request.getInstance().login(id, finalPassword, new RequestCallback() {
+                        @Override
+                        public void onSuccess(Map<String, Object> retData) {
+                            Log.d("aa", "aaaa");
+                            startActivity(intent_main);
+                        }
+
+                        @Override
+                        public void onError() {
+
+                        }
+                    });
                 }
 
                 @Override
