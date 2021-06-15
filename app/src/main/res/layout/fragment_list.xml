@@ -9,11 +9,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listCalenderView"
+            android:layout_margin="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listPostView"
+            android:layout_margin="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

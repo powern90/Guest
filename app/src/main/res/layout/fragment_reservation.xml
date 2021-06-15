@@ -10,11 +10,13 @@
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/reservationCalenderView"
             android:layout_width="match_parent"
+            android:layout_margin="15dp"
             android:layout_height="wrap_content"/>
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/reservationNameView"
             android:layout_width="match_parent"
+            android:layout_margin="15dp"
             android:layout_height="wrap_content"/>
 
 </LinearLayout>

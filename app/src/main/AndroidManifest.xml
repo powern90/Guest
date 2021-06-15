@@ -14,7 +14,11 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.Guest">
-        <activity android:name=".activity.PostActivity">
+        <activity android:name=".activity.ReservDetailActivity">
+        </activity>
+        <activity android:name=".activity.ReservationActivity">
+        </activity>
+        <activity android:name=".activity.DetailActivity">
         </activity>
         <activity
                 android:name=".util.TimeActivity"
@@ -39,6 +43,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <meta-data
+                android:name="com.naver.maps.map.CLIENT_ID"
+                android:value="cuonr9xz2i"/>
     </application>
 
 </manifest>

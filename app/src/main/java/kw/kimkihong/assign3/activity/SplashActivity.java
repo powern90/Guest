@@ -12,6 +12,7 @@ import kw.kimkihong.assign3.retrofit.RequestCallback;
 import java.util.Map;
 
 public class SplashActivity extends AppCompatActivity {
+    //declare intent variable
     private Intent intent_login;
     private Intent intent_main;
 
@@ -20,6 +21,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        //set intent variable
         this.intent_login = new Intent(this, LoginActivity.class);
         this.intent_main = new Intent(this, MainActivity.class);
 
@@ -27,6 +29,7 @@ public class SplashActivity extends AppCompatActivity {
         Request.getInstance().check(new RequestCallback() {
             @Override
             public void onSuccess(Map<String, Object> retData) {
+                //check time and show spash screen for same time
                 long pause = (System.currentTimeMillis() - start) >= 1000 ? 0 : 1000 - (System.currentTimeMillis() - start);
                 new Handler(Looper.getMainLooper()).postDelayed(() -> startActivity(intent_main), pause);
             }

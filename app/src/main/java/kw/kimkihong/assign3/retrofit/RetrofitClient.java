@@ -11,6 +11,7 @@ public class RetrofitClient {
         return getInstance().create(RetrofitAPI.class);
     }
 
+    //initialize instance
     private static Retrofit getInstance(){
         ObjectMapper mapper = new ObjectMapper();
         return new Retrofit.Builder()

@@ -2,10 +2,8 @@ package kw.kimkihong.assign3.retrofit;
 
 import kw.kimkihong.assign3.vo.PostVO;
 
-import java.util.List;
-
-
+//callback for PostVO
 public interface PostCallback {
-    void onSuccess(List<PostVO> retData);
+    void onSuccess(PostVO retData);
     void onError();
 }

@@ -11,12 +11,14 @@ import kw.kimkihong.assign3.R;
 
 public class WebViewActivity extends AppCompatActivity {
 
+    //declare webview
     private WebView browser;
 
-    class MyJavaScriptInterface
+    class JavaScriptInterface
     {
         @JavascriptInterface
         @SuppressWarnings("unused")
+        //declare handler
         public void processDATA(String data) {
             Bundle extra = new Bundle();
             Intent intent = new Intent();
@@ -33,9 +35,10 @@ public class WebViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
 
+        //set webview brawser
         browser = (WebView) findViewById(R.id.webView);
         browser.getSettings().setJavaScriptEnabled(true);
-        browser.addJavascriptInterface(new MyJavaScriptInterface(), "Android");
+        browser.addJavascriptInterface(new JavaScriptInterface(), "Android");
 
         browser.setWebViewClient(new WebViewClient() {
             @Override
@@ -44,6 +47,7 @@ public class WebViewActivity extends AppCompatActivity {
             }
         });
 
+        //load page
         browser.loadUrl("http://10.0.2.2/address");
     }
 }

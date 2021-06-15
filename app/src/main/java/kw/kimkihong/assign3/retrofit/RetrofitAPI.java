@@ -1,6 +1,7 @@
 package kw.kimkihong.assign3.retrofit;
 
 import kw.kimkihong.assign3.vo.PostVO;
+import kw.kimkihong.assign3.vo.ReservationVO;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -10,6 +11,7 @@ import retrofit2.http.*;
 import java.util.List;
 import java.util.Map;
 
+//declare each connection
 public interface RetrofitAPI {
     @FormUrlEncoded
     @POST("test")
@@ -35,7 +37,16 @@ public interface RetrofitAPI {
     @GET("post/list")
     Call<List<PostVO>> getPostList(@Query("date") String date);
 
+    @POST("user/list")
+    Call<List<ReservationVO>> getReservList(@Header("x-access-token") String token,@Body Map<String, Object> form);
+
+    @GET("post")
+    Call<PostVO> getPost(@Query("id") int id);
+
     @Multipart
     @POST("post/upload")
     Call<ResponseBody> upload(@Part MultipartBody.Part image, @Part("upload") RequestBody name);
+
+    @POST("user/add")
+    Call<Map<String, Object>> reservation(@Header("x-access-token") String token, @Body Map<String, Object> form);
 }

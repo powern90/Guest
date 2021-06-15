@@ -3,9 +3,9 @@ package kw.kimkihong.assign3.vo;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class PostVO {
+    //declare variable
     private Integer id;
     private String writer;
     private String name;
@@ -18,9 +18,10 @@ public class PostVO {
     private LocalTime exitTime;
     private String address;
     private String altitude;
-    private String longitude;
+    private String latitude;
     private String img;
 
+    //declare getter and setter
     public LocalTime getEnterTime() {
         return enterTime;
     }
@@ -29,12 +30,20 @@ public class PostVO {
         this.enterTime = enterTime;
     }
 
+    public void setEnterTime(String enterTime) {
+        this.enterTime = LocalTime.parse(enterTime, DateTimeFormatter.ofPattern("HH:mm:ss"));
+    }
+
     public LocalTime getExitTime() {
         return exitTime;
     }
 
     public void setExitTime(LocalTime exitTime) {
         this.exitTime = exitTime;
+    }
+
+    public void setExitTime(String exitTime) {
+        this.exitTime = LocalTime.parse(exitTime, DateTimeFormatter.ofPattern("HH:mm:ss"));
     }
 
     public Integer getId() {
@@ -93,12 +102,20 @@ public class PostVO {
         this.startDate = startDate;
     }
 
+    public void setStartDate(String startDate) {
+        this.startDate = LocalDate.parse(startDate, DateTimeFormatter.ISO_DATE);;
+    }
+
     public LocalDate getEndDate() {
         return endDate;
     }
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = LocalDate.parse(endDate, DateTimeFormatter.ISO_DATE);;
     }
 
     public String getAddress() {
@@ -117,12 +134,12 @@ public class PostVO {
         this.altitude = altitude;
     }
 
-    public String getLongitude() {
-        return longitude;
+    public String getLatitude() {
+        return latitude;
     }
 
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
+    public void setLatitude(String longitude) {
+        this.latitude = longitude;
     }
 
     public String getImg() {

@@ -1,38 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         tools:context=".activity.LoginActivity">
 
-    <EditText
+    <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Guest"
+                android:layout_marginBottom="15dp"
+                android:textColor="@color/black"
+                android:textSize="50dp"/>
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="ID"
+                android:ems="10"
+                android:id="@+id/loginIdInput"/>
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="Password"
+                android:ems="10"
+                android:id="@+id/loginPasswordInput"/>
+
+        <Button
+                android:text="Submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/loginSubmit"/>
+
+        <Button
+                android:text="Register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/loginRegister"/>
+    </LinearLayout>
+
+    <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="ID"
-            android:ems="10"
-            android:id="@+id/loginIdInput"/>
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:text="2016722004 김기홍"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            tools:ignore="RtlHardcoded"/>
 
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="Password"
-            android:ems="10"
-            android:id="@+id/loginPasswordInput"/>
-
-    <Button
-            android:text="Submit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/loginSubmit"/>
-
-    <Button
-            android:text="Register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/loginRegister"/>
-
-</LinearLayout>
+</RelativeLayout>

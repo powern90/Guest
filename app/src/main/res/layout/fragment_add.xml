@@ -38,217 +38,239 @@
                     android:text="클릭하여 사진을 추가하세요"/>
         </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:hint="상호명"
+                        android:id="@+id/addNameInput"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="1박 가격"
+                        android:id="@+id/addPriceInput"
+                        android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:hint="상호명"
-                    android:id="@+id/addNameInput"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                    android:inputType="textMultiLine"
+                    android:layout_marginBottom="10dp"
+                    android:lines="8"
+                    android:maxLines="10"
+                    android:scrollbars="vertical"
+                    android:hint="설명"
+                    android:id="@+id/addContentInput"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:hint="인원"
+                        android:id="@+id/addCountInput"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none"
+                            android:enabled="false"
+                            android:hint="등록 시작 날짜"
+                            android:id="@+id/addStartDateInput"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="1"
+                        android:text="선택"
+                        android:id="@+id/addStartDateSelect"/>
+            </LinearLayout>
+
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="1박 가격"
-                    android:id="@+id/addPriceInput"
-                    android:inputType="number"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
 
-        <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:lines="8"
-                android:maxLines="10"
-                android:scrollbars="vertical"
-                android:hint="설명"
-                android:id="@+id/addContentInput"/>
+                <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4">
 
-        <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none"
+                            android:enabled="false"
+                            android:hint="등록 종료 날짜"
+                            android:id="@+id/addEndDateInput"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+                <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="1"
+                        android:text="선택"
+                        android:id="@+id/addEndDateSelect"/>
+            </LinearLayout>
+
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:hint="인원"
-                    android:id="@+id/addCountInput"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
 
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-            <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4">
-
-                <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
+                <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:inputType="none"
-                        android:enabled="false"
-                        android:hint="등록 시작 날짜"
-                        android:id="@+id/addStartDateInput"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_weight="4">
 
-            <Button
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="선택"
-                    android:id="@+id/addStartDateSelect"/>
-        </LinearLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none"
+                            android:enabled="false"
+                            android:hint="입실 시간"
+                            android:id="@+id/addStartTimeInput"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-            <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4">
-
-                <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
+                <Button
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:inputType="none"
-                        android:enabled="false"
-                        android:hint="등록 종료 날짜"
-                        android:id="@+id/addEndDateInput"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="1"
+                        android:text="선택"
+                        android:id="@+id/addStartTimeSelect"/>
+            </LinearLayout>
 
-            <Button
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="선택"
-                    android:id="@+id/addEndDateSelect"/>
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-            <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4">
-
-                <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none"
-                        android:enabled="false"
-                        android:hint="입실 시간"
-                        android:id="@+id/addStartTimeInput"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="선택"
-                    android:id="@+id/addStartTimeSelect"/>
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-            <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4">
-
-                <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none"
-                        android:enabled="false"
-                        android:hint="퇴실 시간"
-                        android:id="@+id/addEndTimeInput"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="선택"
-                    android:id="@+id/addEndTimeSelect"/>
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-            <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/addAddress_1"
-                    android:layout_weight="4">
-
-                <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none"
-                        android:enabled="false"
-                        android:hint="주소 검색"
-                        android:id="@+id/addAddressInput_1"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="검색"
-                    android:id="@+id/addSearchAddress"/>
-
-        </LinearLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/addAddress_2">
-
-            <com.google.android.material.textfield.TextInputEditText
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="상세 주소"
-                    android:id="@+id/addAddressInput_2"
-                    android:inputType="text"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
 
-        <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/addSubmit"
-                android:text="등록"/>
+                <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none"
+                            android:enabled="false"
+                            android:hint="퇴실 시간"
+                            android:id="@+id/addEndTimeInput"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="5dp"
+                        android:text="선택"
+                        android:id="@+id/addEndTimeSelect"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/addAddress_1"
+                        android:layout_weight="4">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none"
+                            android:enabled="false"
+                            android:hint="주소 검색"
+                            android:id="@+id/addAddressInput_1"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="1"
+                        android:text="검색"
+                        android:id="@+id/addSearchAddress"/>
+
+            </LinearLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/addAddress_2">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="상세 주소"
+                        android:id="@+id/addAddressInput_2"
+                        android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/addSubmit"
+                    android:text="등록"/>
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

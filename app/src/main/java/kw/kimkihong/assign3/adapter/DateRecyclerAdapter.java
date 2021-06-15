@@ -15,40 +15,48 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class DateRecyclerAdapter extends RecyclerView.Adapter<DateRecyclerAdapter.ViewHolder> {
+    //declare each variable
     private final ArrayList<DateVO> mCalendarList = new ArrayList<>();
     private OnItemClickListener mListener;
     private int clickedPosition;
     private ViewHolder clicked;
 
+    //make on item click listener
     public void setOnItemClickListener(OnItemClickListener listener)
     {
         this.mListener = listener;
         this.clickedPosition = 0;
     }
 
+    //declare on create view holder
     @NonNull
     @Override
     public DateRecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        //set view
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.calendar_item, parent, false);
         return new ViewHolder(view);
     }
 
+    //declare onbind holder
     @Override
     public void onBindViewHolder(@NonNull DateRecyclerAdapter.ViewHolder holder, int position) {
         holder.onBind(mCalendarList.get(position));
     }
 
+    //declare count function
     @Override
     public int getItemCount() {
         return mCalendarList.size();
     }
 
+    //declare add element function
     public void addDate() {
         for (int i = 0; i < 20; i++) {
             if(this.getItemCount() == 0) {
                 this.mCalendarList.add(new DateVO(Calendar.getInstance()));
             }
             else {
+                //calculate new element value
                 Calendar last = (Calendar) this.mCalendarList.get(this.getItemCount() - 1).getDate().clone();
                 last.add(Calendar.DATE, 1);
                 this.mCalendarList.add(new DateVO(last));
@@ -56,25 +64,31 @@ public class DateRecyclerAdapter extends RecyclerView.Adapter<DateRecyclerAdapte
         }
     }
 
-    public interface OnItemClickListener
-    {
+    //declare interface for item click listener
+    public interface OnItemClickListener {
         void onItemClick(View view, Calendar date);
     }
 
+    //declare viewholder
     class ViewHolder extends RecyclerView.ViewHolder {
+        //set view variable
         LinearLayout calender;
         TextView date;
         TextView day;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            //set view variable
             this.calender = itemView.findViewById(R.id.calenderItem);
             this.date = itemView.findViewById(R.id.dateItem);
             this.day =  itemView.findViewById(R.id.dayItem);
 
+            //set onclick listener
             itemView.setOnClickListener(view -> {
+                //get absolute position of element
                 int position = getAbsoluteAdapterPosition();
                 if(clickedPosition != position) {
+                    //set select item and not selected item by position
                     clicked.calender.setBackgroundResource(R.drawable.calendar_item_background);
                     clicked.date.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.grey));
                     clicked.day.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.grey));
@@ -89,8 +103,10 @@ public class DateRecyclerAdapter extends RecyclerView.Adapter<DateRecyclerAdapte
             });
         }
 
+        //declare bind function
         void onBind(DateVO item){
             int position = getAbsoluteAdapterPosition();
+            //refresh every data to prevent malfunction
             if(clicked == null && position == 0) {
                 clicked = this;
             }

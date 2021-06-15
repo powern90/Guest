@@ -3,8 +3,10 @@ package kw.kimkihong.assign3.vo;
 import java.util.Calendar;
 
 public class DateVO {
+    //declare variable
     private Calendar date;
 
+    //declare getter and setter
     public DateVO(Calendar date) {
         this.date = date;
     }

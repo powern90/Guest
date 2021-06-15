@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +21,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
+
+    //Declare Activity variable
     private TextInputLayout idLayout;
     private TextInputLayout passwordLayout;
     private TextInputLayout passwordCheckLayout;
@@ -44,13 +45,16 @@ public class RegisterActivity extends AppCompatActivity {
     private Button check;
     private Button submit;
 
+    //declare Intent variable
     private Intent intent_main;
 
+    //Declare check variable
     private boolean idCheck;
     private boolean pwCheck;
     private boolean business;
     private Integer gender;
 
+    //declare shared preference
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -58,6 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        //set activity vriable
         this.idLayout = findViewById(R.id.registerId);
         this.passwordLayout = findViewById(R.id.registerPassword);
         this.passwordCheckLayout = findViewById(R.id.registerPasswordCheck);
@@ -80,14 +85,17 @@ public class RegisterActivity extends AppCompatActivity {
         this.check = (Button) findViewById(R.id.registerIdCheck);
         this.submit = (Button) findViewById(R.id.registerSubmit);
 
+        //set intent variable
         this.intent_main = new Intent(this, MainActivity.class);
 
+        //set onclick listener
         this.passwordCheckInput.setOnFocusChangeListener(new passwordOnFocusChangedListener());
         this.businessSelect.setOnCheckedChangeListener(new registerOnCheckListener());
         this.genderSelect.setOnCheckedChangeListener(new genderOnCheckListener());
         this.check.setOnClickListener(new checkOnClickListener());
         this.submit.setOnClickListener(new submitOnClickListener());
 
+        //set check variable
         this.idCheck = false;
         this.pwCheck = false;
         this.business = false;
@@ -96,23 +104,26 @@ public class RegisterActivity extends AppCompatActivity {
         this.sharedPreferences = getApplicationContext().getSharedPreferences("user_data", Context.MODE_PRIVATE);
     }
 
-    class iddOnFocusChangedListener implements View.OnFocusChangeListener {
-        @Override
-        public void onFocusChange(View v, boolean hasFocus) {
-            String id = idInput.getText().toString().trim();
-            if(!hasFocus || id.equals("")) {
-                idLayout.setError("아이디를 입력하세요");
-                idCheck = false;
-            }
-        }
-    }
+//    class iddOnFocusChangedListener implements View.OnFocusChangeListener {
+//        @Override
+//        public void onFocusChange(View v, boolean hasFocus) {
+//            String id = idInput.getText().toString().trim();
+//            if(!hasFocus || id.equals("")) {
+//                idLayout.setError("아이디를 입력하세요");
+//                idCheck = false;
+//            }
+//        }
+//    }
 
+    //declare password check listener
     class passwordOnFocusChangedListener implements View.OnFocusChangeListener {
         @Override
         public void onFocusChange(View v, boolean hasFocus) {
+            //if password check is different
             if(!hasFocus
                     && !passwordInput.getText().toString().equals(passwordCheckInput.getText().toString())
                     || passwordInput.getText().toString().trim().equals("")) {
+                //mark warning
                 passwordCheckLayout.setError("비밀번호가 다릅니다.");
                 pwCheck = false;
             }
@@ -123,9 +134,11 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    //declare register onclick listener
     class registerOnCheckListener implements RadioGroup.OnCheckedChangeListener {
         @Override
         public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+            //set value if radio button changed
             if(i == R.id.registerBusinessTrue) {
                 businessNumberLayout.setVisibility(View.VISIBLE);
                 business = true;
@@ -138,9 +151,11 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    //declare gender onclick listener
     class genderOnCheckListener implements RadioGroup.OnCheckedChangeListener {
         @Override
         public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+            //set value if radio button changed
             if(i == R.id.registerGenderMale) {
                 gender = 0;
             }
@@ -150,18 +165,22 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    //declare id check onclick listener
     class checkOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
             String id = idInput.getText().toString().trim();
+            //if id is empty
             if(id.equals("")) {
                 idLayout.setError("아이디를 입력하세요");
                 idCheck = false;
             }
             else {
+                //call API for check id
                 Request.getInstance().checkID(id, new RequestCallback() {
                     @Override
                     public void onSuccess(Map<String, Object> retData) {
+                        //if id is usable
                         Toast.makeText(getApplicationContext(), "사용 가능한 아이디 입니다.", Toast.LENGTH_SHORT).show();
                         idLayout.setError(null);
                         idCheck = true;
@@ -178,9 +197,11 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    //declare submit onclick listener
     class submitOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            //check every input is valid
             if(!idCheck || !pwCheck) {
                 Toast.makeText(getApplicationContext(), "아이디 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();
                 return;
@@ -207,6 +228,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "사업자등록번호를 입력해주세요", Toast.LENGTH_SHORT).show();
                 return;
             }
+            //create form data
             Map<String, Object> form = new HashMap<>();
             form.put("id", id);
             form.put("password", password);
@@ -217,6 +239,7 @@ public class RegisterActivity extends AppCompatActivity {
             form.put("isBusiness", business);
             form.put("business", businessNumber);
             String finalPassword = password;
+            //call API for enroll
             Request.getInstance().enroll(form, new RequestCallback() {
                 @Override
                 public void onSuccess(Map<String, Object> retData) {
@@ -227,9 +250,10 @@ public class RegisterActivity extends AppCompatActivity {
                     editor.putBoolean("isBusiness", business);
                     editor.apply();
                     Request.getInstance().login(id, finalPassword, new RequestCallback() {
+                        //if enroll is success
                         @Override
                         public void onSuccess(Map<String, Object> retData) {
-                            Log.d("aa", "aaaa");
+                            //goto main activity
                             startActivity(intent_main);
                         }
 

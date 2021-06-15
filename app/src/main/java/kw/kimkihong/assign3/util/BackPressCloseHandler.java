@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.widget.Toast;
 
 public class BackPressCloseHandler {
+    //declare variable
     private long backKeyClickTime = 0;
     private final Activity activity;
 
@@ -12,11 +13,13 @@ public class BackPressCloseHandler {
     }
 
     public void onBackPressed() {
+        //check first press
         if (System.currentTimeMillis() > backKeyClickTime + 2000) {
             backKeyClickTime = System.currentTimeMillis();
             showToast();
             return;
         }
+        //check second press and calculate time interval
         if (System.currentTimeMillis() <= backKeyClickTime + 2000) {
             activity.finishAffinity();
             System.runFinalization();

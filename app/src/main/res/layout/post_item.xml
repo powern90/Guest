@@ -5,6 +5,7 @@
               android:layout_height="250dp"
               android:layout_marginStart="4dp"
               android:layout_marginEnd="4dp"
+              android:layout_marginBottom="5dp"
               android:background="@drawable/post_item_box"
               android:orientation="vertical">
     <LinearLayout

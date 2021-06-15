@@ -22,16 +22,18 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="20sp"
-                android:textSize="50sp"
-                android:text="app name" />
+                android:textSize="80sp"
+                android:textColor="@color/black"
+                android:text="Guest" />
 
         <TextView
                 android:id="@+id/hakbun"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="30sp"
                 android:layout_gravity="center"
-                android:text="2016722004" />
+                android:textColor="@color/black"
+                android:text="2016722004 김기홍" />
 
     </LinearLayout>
 
