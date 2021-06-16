@@ -37,13 +37,13 @@
                         android:layout_weight="4"
                         app:counterMaxLength="10"
                         app:counterEnabled="true"
+                        android:hint="아이디"
                         android:id="@+id/registerId">
 
                         <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="text"
-                                android:hint="아이디"
                                 android:id="@+id/registerIdInput"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <Button
@@ -62,12 +62,12 @@
                     android:layout_height="wrap_content"
                     app:counterMaxLength="10"
                     app:counterEnabled="true"
+                    android:hint="비밀번호"
                     android:id="@+id/registerPassword">
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
-                        android:hint="비밀번호"
                         android:id="@+id/registerPasswordInput"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,12 +78,12 @@
                     android:layout_height="wrap_content"
                     app:counterMaxLength="10"
                     app:counterEnabled="true"
+                    android:hint="비밀번호 확인"
                     android:id="@+id/registerPasswordCheck">
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
-                        android:hint="비밀번호 확인"
                         android:id="@+id/registerPasswordCheckInput"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,12 +104,12 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="전화번호"
                     android:id="@+id/registerPhone">
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="phone"
-                        android:hint="전화번호"
                         android:id="@+id/registerPhoneInput"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -143,12 +143,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
+                        android:hint="주소 검색"
                         android:id="@+id/registerAddress_1">
                     <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
-                            android:hint="주소 검색"
                             android:id="@+id/registerAddressInput_1"
                             android:inputType="text"/>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -167,11 +167,11 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="상세 주소"
                     android:id="@+id/registerAddress_2">
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="상세 주소"
                         android:id="@+id/registerAddressInput_2"
                         android:inputType="text"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -201,11 +201,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/registerBusinessNumber"
+                    android:hint="사업자등록번호"
                     android:visibility="gone">
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="사업자등록번호"
                         android:id="@+id/registerBusinessNumberInput"
                         android:inputType="text"/>
             </com.google.android.material.textfield.TextInputLayout>
