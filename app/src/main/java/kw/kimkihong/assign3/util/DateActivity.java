@@ -54,19 +54,23 @@ public class DateActivity extends Activity {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
 
         //set start date and end date
-        if(!this.startDate.equals("")) {
-            try {
-                this.datePicker.setMinDate(format.parse(this.startDate).getTime());
-            } catch (ParseException e) {
-                e.printStackTrace();
+        if(this.startDate != null) {
+            if (!this.startDate.equals("")) {
+                try {
+                    this.datePicker.setMinDate(format.parse(this.startDate).getTime());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
-        if(!this.endDate.equals("")) {
-            try {
-                this.datePicker.setMaxDate(format.parse(this.endDate).getTime());
-            } catch (ParseException e) {
-                e.printStackTrace();
+        if(this.endDate != null) {
+            if (!this.endDate.equals("")) {
+                try {
+                    this.datePicker.setMaxDate(format.parse(this.endDate).getTime());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         }
 

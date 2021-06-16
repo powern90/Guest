@@ -19,8 +19,6 @@ public class MyFragment extends Fragment {
     private Context mContext;
     private Activity mActivity;
 
-    private View view;
-
     //get context and activity
     @Override
     public void onAttach(@NotNull Context context) {
@@ -34,28 +32,27 @@ public class MyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //set variable
-        this.view = inflater.inflate(R.layout.fragment_add, container, false);
-        this.signOut = this.view.findViewById(R.id.mySignout);
+        View view = inflater.inflate(R.layout.fragment_my, container, false);
+        this.signOut = (Button) view.findViewById(R.id.Signout);
+        this.signOut.setOnClickListener(new signOutOnClickListener());
+        //then return in on create view.
+        return view;
+    }
 
-        //assign onclick listener
-        signOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //clear shared preference
-                SharedPreferences preferences = mContext.getSharedPreferences("user_data", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor= preferences.edit();
-                editor.remove("id");
-                editor.remove("password");
-                editor.remove("token");
-                editor.remove("isBusiness");
-                editor.apply();
-                //close app
-                mActivity.finishAffinity();
-                System.runFinalization();
-                System.exit(0);
-            }
-        });
-
-        return inflater.inflate(R.layout.fragment_my, container, false);
+    class signOutOnClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            SharedPreferences preferences = mContext.getSharedPreferences("user_data", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor= preferences.edit();
+            editor.remove("id");
+            editor.remove("password");
+            editor.remove("token");
+            editor.remove("isBusiness");
+            editor.commit();
+            //close app
+            mActivity.finishAffinity();
+            System.runFinalization();
+            System.exit(0);
+        }
     }
 }

@@ -4,21 +4,29 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 import androidx.annotation.IdRes;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.google.android.material.textfield.TextInputLayout;
 import kw.kimkihong.assign3.R;
 import kw.kimkihong.assign3.retrofit.Request;
 import kw.kimkihong.assign3.retrofit.RequestCallback;
+import kw.kimkihong.assign3.util.WebViewActivity;
 
+import java.io.FileNotFoundException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -43,6 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
     private RadioGroup genderSelect;
     private RadioGroup businessSelect;
     private Button check;
+    private Button search;
     private Button submit;
 
     //declare Intent variable
@@ -56,6 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     //declare shared preference
     private SharedPreferences sharedPreferences;
+    private static final int SEARCH_ADDRESS_REQUEST = 700;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
         this.genderSelect = findViewById(R.id.registerGenderSelect);
         this.businessSelect = findViewById(R.id.registerBusinessSelect);
         this.check = (Button) findViewById(R.id.registerIdCheck);
+        this.search = (Button) findViewById(R.id.registerSearch);
         this.submit = (Button) findViewById(R.id.registerSubmit);
 
         //set intent variable
@@ -93,6 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
         this.businessSelect.setOnCheckedChangeListener(new registerOnCheckListener());
         this.genderSelect.setOnCheckedChangeListener(new genderOnCheckListener());
         this.check.setOnClickListener(new checkOnClickListener());
+        this.search.setOnClickListener(new addressOnClickListener());
         this.submit.setOnClickListener(new submitOnClickListener());
 
         //set check variable
@@ -104,16 +116,17 @@ public class RegisterActivity extends AppCompatActivity {
         this.sharedPreferences = getApplicationContext().getSharedPreferences("user_data", Context.MODE_PRIVATE);
     }
 
-//    class iddOnFocusChangedListener implements View.OnFocusChangeListener {
-//        @Override
-//        public void onFocusChange(View v, boolean hasFocus) {
-//            String id = idInput.getText().toString().trim();
-//            if(!hasFocus || id.equals("")) {
-//                idLayout.setError("아이디를 입력하세요");
-//                idCheck = false;
-//            }
-//        }
-//    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //check result code is ok
+        if(resultCode == RESULT_OK && data != null && requestCode == SEARCH_ADDRESS_REQUEST) {
+            //if search address selected
+            //set address
+            String address = data.getStringExtra("data");
+            this.addressInput_1.setText(address);
+        }
+    }
 
     //declare password check listener
     class passwordOnFocusChangedListener implements View.OnFocusChangeListener {
@@ -131,6 +144,14 @@ public class RegisterActivity extends AppCompatActivity {
                 passwordCheckLayout.setError(null);
                 pwCheck = true;
             }
+        }
+    }
+
+    class addressOnClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
+            startActivityForResult(intent, SEARCH_ADDRESS_REQUEST);
         }
     }
 

@@ -13,10 +13,6 @@ import java.util.Map;
 
 //declare each connection
 public interface RetrofitAPI {
-    @FormUrlEncoded
-    @POST("test")
-    Call<Map<String, Object>> test(@Field("aaa") String aaa);
-
     @GET("auth/check")
     Call<Map<String, Object>> check(@Header("x-access-token") String token);
 
